@@ -1,0 +1,1 @@
+Ramblings about javascript. Feel free to make corrections!

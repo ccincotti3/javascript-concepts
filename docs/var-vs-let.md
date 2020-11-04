@@ -124,3 +124,10 @@ So in summary the two main differences between `let` (as well as `const`) and `v
 	 - `let/const` are block-scoped.
 
 Next, we'll take a deeper dive into scope and closures!
+
+## Additional Resources
+ - [var vs let vs const in JavaScript -
+   ui.dev](https://ui.dev/var-let-const/)
+ - [ES6 cool stuffs —var, let and const in depth](https://medium.com/front-end-weekly/es6-cool-stuffs-var-let-and-const-in-depth-24512e593268)
+  - [The Difference Between Function and Block Scope in JavaScript](https://medium.com/@josephcardillo/the-difference-between-function-and-block-scope-in-javascript-4296b2322abe)
+  - [Advanced JavaScript ES6 — Temporal Dead Zone,  Default Parameters And Let vs Var — Deep dive!](https://medium.com/nmc-techblog/advanced-javascript-es6-temporal-dead-zone-default-parameters-and-let-vs-var-deep-dive-ca588fcde21b)

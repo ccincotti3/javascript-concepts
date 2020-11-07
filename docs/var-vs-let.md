@@ -1,4 +1,4 @@
-# Chapter 1: Variable Keywords and Hoisting
+# Variable Keywords and Hoisting
 
 The differences between the keywords `var`, `let` and `const` are rather inconsequential for most developers of modern Javascript. Most dev's know the golden rule to stick to `const` unless a variable is expected to be reassigned in the future (like in an if condition, or a for-loop). However, there are time's where dev's are called to work in legacy code, or they stumble across an old StackExchange answer, where `var` is employed.
 

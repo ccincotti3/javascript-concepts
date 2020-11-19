@@ -201,8 +201,6 @@ console.log(i) // 2
 So you really need to be careful... but closures also come with great power.
 
 ### Why Closures are powerful
-
-:
 ```javascript
 let counter = 0
 function tickCounter() {

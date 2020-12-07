@@ -118,7 +118,35 @@ So in summary the two main differences between `let` (as well as `const`) and `v
 	 - `var` is function-scoped.
 	 - `let/const` are block-scoped.
 
-Next, we'll take a deeper dive into scope and closures!
+## Hoisting
+
+Honestly understanding the difference between  `var` and `let` exposes a lot of what hoisting actually is. MDN sums it up as: 
+> Conceptually, for example, a strict definition of hoisting suggests that variable and function declarations are physically moved to the top of your code, but this is not in fact what happens. Instead, the variable and function declarations are put into memory during the _compile_ phase, but stay exactly where you typed them in your code.`
+
+So, it seems that as we saw before `var` declarations were added to memory during the compile phase and thus _became accessible_ before they were initialized.
+
+What else can be hoisted? Let's see this example from MDN:
+```js
+catName("Chloe");
+
+function catName(name) {
+  console.log("My cat's name is " + name);
+}
+/*
+The result of the code above is: "My cat's name is Chloe"
+*/
+```
+
+So here, this `function` declaration is not like what we saw with `var` where it return `undefined` . **The function declaration is the entire function itself**. Thus, it is technically accessible when we call it before in the code! This will become more apparent if you check out the scopes and closures section.
+
+If you find that this is annoying - you can add `strict mode` to the top of your javascript code to disallow hoisting altogether. 
+
+```javascript
+'use strict';
+
+// OR
+"use strict";
+```
 
 ## Additional Resources
  - [var vs let vs const in JavaScript -

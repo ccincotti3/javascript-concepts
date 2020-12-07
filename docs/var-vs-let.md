@@ -1,10 +1,10 @@
-# Variable Keywords and Hoisting
+# Chapter 1: Variable Keywords and Hoisting
 
 The differences between the keywords `var`, `let` and `const` are rather inconsequential for most developers of modern Javascript. Most dev's know the golden rule to stick to `const` unless a variable is expected to be reassigned in the future (like in an if condition, or a for-loop). However, there are time's where dev's are called to work in legacy code, or they stumble across an old StackExchange answer, where `var` is employed.
 
-At first use of `var` it's usually seen as to declare a super variable in some respects. Like with the use of `let`, we can change a variable it's later if we want to. We don't have to think, why not just use `var`?
+At first use of `var` it's usually seen as to declare a super variable in some respects. Like with the use of `let`, we can change a variable's value later if we want to. If we gain this superpower, we might ask ourselves - why not just use `var` all the time? What's the catch?
 
-So I propose that we start with `let` vs `var`.
+To examine this question - I propose that we start by looking at the differences between  `let` and `var`.
 
 Let's start here by defining two variables in the global scope with these two keywords `let` and `var`:
 ```javascript
@@ -18,7 +18,7 @@ _**Pro-tip** - logging variables as an object increases readability, because key
 
 OK, no surprises here. We defined two variable's in the global scope, and we logged them to the console.
 
-Now let's create a function, and really get to the meat and potatoes. Let's show a key difference by logging these two variable's to the console _before_ they are defined.
+Now let's create a function, and really get to the meat and potatoes. By doing this, we'll show a key difference by logging these two variable's to the console _before_ they are defined.
 
 ```javascript
 function myFunction() {
@@ -37,17 +37,13 @@ Thrown:
 ReferenceError: myLet is not defined
 ```
 
-What? `myVar` is undefined, and `myLet` returns a `ReferenceError` that states that myLet has yet to be defined. 
+What? `myVar` is `undefined`, and `myLet` returns a `ReferenceError` that states that myLet has yet to be defined. 
 
-This brings us to a major difference between these two. However, before we can really understand this difference, it's important to understand how Javascript is built and ran, and from this we will understand the concept of **hoisting**. 
+This brings us to a major difference between these two. `myVar` is **hoisted** to the top of the function scope, and thus is considered _accessible_ throughout the function _even before it is defined with a proper value_. It takes the value of `undefined`.
 
-We will explore the topics more in depth when we discuss Closures/Scopes and how execution of our code really works, but what's important for this section is to understand that when we're **interpreting** code, there are 2 phases. (This is a generalization, each JS engine has many steps depending on what optimizations it opts to take, but simplifying it down to two steps is OK.)
+Before continuing on, let's take a look at how Javascript is built and ran, and from this we will understand the concept of **hoisting**. 
 
-Whether it be
-
- - The global context
- - a function
- - an eval statement
+High level: what's important for this section is to understand that when we're **interpreting** code, there are 2 phases. (This is a generalization, each JS engine has many steps depending on what optimizations it opts to take, but simplifying it down to two steps is OK.)
 
 We first start with **The Creation Phase** and then following that, **The Execution Phase**.
 
@@ -56,7 +52,7 @@ At a super high level (we'll revisit this concept later):
  1. **The Creation Phase** is when the JS interpreter stores allocates space for variable and function declarations in memory.
  2. **The Execution Phase** is when the JS interpreter starts executing the code line by line. Therefore, our variables will be assigned the values that we defined. So `myVar` will actual be assigned `Pie` for example.
 
-So using the knowledge that we are know equipped with, we can deduce that `myVar` was defined a default value of `undefined` during the Creation Phase (before it was actually assigned a value during the Execution Phase). So, `myVar` had a value of `undefined` even before the assignment of `myVar` was executed. 
+So using the knowledge that we are now equipped with, we can deduce that `myVar` was defined a default value of `undefined` during the Creation Phase (before it was actually assigned a value during the Execution Phase). So, `myVar` had a value of `undefined` even before the assignment of `myVar` was executed. 
 
 But that doesn't explain `myLet`, well, can we be sure that the variable was hoisted within the function? Let's see another example to truly test it. This time, let's define a variable `let` myLet, and _another_ within the function. This is possible due to scope (again we'll cover that later).
 
@@ -81,7 +77,7 @@ We just hit our first difference between the two! The JS interpreter does not de
 
 We can drill down these topics further, but for the sake of staying on track, let's move on.
 
-So the other key difference that we'll see is expressed by the following code:
+So the other key difference that we'll see is shown by the following code:
 
 ```javascript
 var myVar = "FirstVar"
@@ -107,8 +103,7 @@ Uh what?
 
 So `myVar` is returns `undefined` and `myLet`  is `FirstLet`.
 
-Putting our thinking caps on, the last time we saw `myVar` as `undefined`, we understood that it had to do something with the 
-Creation Phase' and the hoisting of the variable... OK. So I think we can convince ourselves that that same phenomenon happened here.
+Putting our thinking caps on, the last time we saw `myVar` as `undefined`, we understood that it had to do something with the Creation Phase' and the hoisting of the variable to the top of the function... OK. So I think we can convince ourselves that that same phenomenon happened here.
 
 But that doesn't explain `myLet`. It looks like it inherited the `let` keyword from the global scope, and did not change at all when it was reassigned within that block. That's worth repeating one more time: it did not change at all when it was reassigned. Within. That. Block. 
 
